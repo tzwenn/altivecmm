@@ -3,8 +3,9 @@
 #include <altivec.h>
 #include <ostream>
 
-#include "typetable.h"
+#include "detail/typetable.h"
 #include "detail/build_vec.h"
+#include "detail/splat.h"
 
 namespace altivecmm {
 
@@ -12,19 +13,24 @@ namespace altivecmm {
 	class Vec
 	{
 	public:
-		using typeinfo = typetable<elemtype>;
+		using typeinfo = detail::typetable<elemtype>;
 		using vectype = typename typeinfo::vectype;
 
 		template<typename... Args>
 		static Vec construct(Args &&... args)
 		{
-			using typeinfo = typetable<elemtype>;
 			static_assert(!(sizeof...(Args) > typeinfo::elem_count), "Too many arguments for this vector type");
 			static_assert(!(sizeof...(Args) < typeinfo::elem_count),  "Too few arguments for this vector type");
 			return detail::vec_from_arg<typeinfo::elem_count, elemtype>()(args...);
 		}
 
 		////////////////////////////////////
+
+		Vec(const elemtype value = 0) :
+			m_d(detail::splat<typeinfo::elem_count, elemtype>()(value))
+		{
+			;;
+		}
 
 		Vec(std::initializer_list<elemtype> list) :
 			m_d(detail::vec_from_stdvec<typeinfo::elem_count, elemtype>()(list))

@@ -18,7 +18,7 @@
 
 */
 
-namespace altivecmm {
+namespace altivecmm { namespace detail {
 
 	template<typename T>
 	struct typetable;
@@ -162,4 +162,5 @@ namespace altivecmm {
 			   elem_bits = 64};
 	};*/
 #endif // _ARCH_PWR8
-}
+
+}}
