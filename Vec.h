@@ -102,6 +102,23 @@ namespace altivecmm {
 
 		////////////////////////////////////
 
+		Vec operator &(const Vec & other) const
+		{
+			return vec_and(m_d, other.m_d);
+		}
+
+		Vec operator ^(const Vec & other) const
+		{
+			return vec_xor(m_d, other.m_d);
+		}
+
+		////////////////////////////////////
+
+		Vec operator ~() const
+		{
+			return vec_nand(m_d, m_d);
+		}
+
 		Vec abs() const
 		{
 			return vec_abs(m_d);
@@ -121,6 +138,11 @@ namespace altivecmm {
 
 		////////////////////////////////////
 
+		vectype d() const
+		{
+			return m_d;
+		}
+
 		operator vectype() const
 		{
 			return m_d;
@@ -130,9 +152,10 @@ namespace altivecmm {
 
 		std::ostream& print(std::ostream & stream) const
 		{
-			stream << "Vec<" << typeinfo::typestr << ">{" << m_d[0];
-			for (int i = 1; i < typeinfo::elem_count; i++)
-				stream << ", " << m_d[i];
+			stream << "Vec<" << typeinfo::typestr << ">{" << +m_d[0];
+			for (int i = 1; i < typeinfo::elem_count; i++) {
+				stream << ", " << +m_d[i];
+			}
 			stream << "}";
 			return stream;
 		}
