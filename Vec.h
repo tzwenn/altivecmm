@@ -79,7 +79,7 @@ namespace altivecmm {
 
 		Vec & operator /=(const Vec & other)
 		{
-			m_d = vec_mul(m_d, other.m_d);
+			m_d = vec_div(m_d, other.m_d);
 			return *this;
 		}
 
