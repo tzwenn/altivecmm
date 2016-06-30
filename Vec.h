@@ -5,7 +5,6 @@
 
 #include "detail/typetable.h"
 #include "detail/build_vec.h"
-#include "detail/splat.h"
 
 namespace altivecmm {
 
@@ -27,7 +26,7 @@ namespace altivecmm {
 		////////////////////////////////////
 
 		Vec(const elemtype value = 0) :
-			m_d(detail::splat<typeinfo::elem_count, elemtype>()(value))
+			m_d(vec_splats(value))
 		{
 			;;
 		}
