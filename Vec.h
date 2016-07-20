@@ -50,7 +50,7 @@ namespace altivecmm {
 			;;
 		}
 
-		Vec(const vectype & d) :
+		Vec(vectype d) :
 			m_d(d)
 		{
 			;;
