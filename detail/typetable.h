@@ -39,14 +39,6 @@ namespace altivecmm { namespace detail {
 			   elem_bits = 8};
 	};
 
-	/*template <>
-	struct typetable<bool char> {
-		using vectype = __vector bool char;
-		static constexpr const char *typestr = "bool char";
-		enum { elem_count = 16,
-			   elem_bits = 8};
-	};*/
-
 	template <>
 	struct typetable<unsigned short> {
 		using vectype = __vector unsigned short;
@@ -62,14 +54,6 @@ namespace altivecmm { namespace detail {
 		enum { elem_count = 8,
 			   elem_bits = 16};
 	};
-	
-	/*template <>
-	struct typetable<bool short> {
-		using vectype = __vector bool short;
-		static constexpr const char *typestr = "bool short";
-		enum { elem_count = 8,
-			   elem_bits = 16};
-	};*/
 
 	/*template <>
 	struct typetable<__pixel> {
@@ -94,14 +78,6 @@ namespace altivecmm { namespace detail {
 		enum { elem_count = 4,
 			   elem_bits = 32};
 	};
-
-	/*template <>
-	struct typetable<bool int> {
-		using vectype = __vector bool int;
-		static constexpr const char *typestr = "bool int";
-		enum { elem_count = 4,
-			   elem_bits = 32};
-	};*/
 
 	template <>
 	struct typetable<float> {
@@ -153,14 +129,6 @@ namespace altivecmm { namespace detail {
 		enum { elem_count = 2,
 			   elem_bits = 64};
 	};
-
-	/*template <>
-	struct typetable<long bool> {
-		using vectype = __vector long bool;
-		static constexpr const char *typestr = "long bool";
-		enum { elem_count = 2,
-			   elem_bits = 64};
-	};*/
 #endif // _ARCH_PWR8
 
 }}
