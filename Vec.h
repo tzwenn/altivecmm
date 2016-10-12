@@ -142,6 +142,12 @@ public:
 		return vec_addc(m_d, other.m_d);
 	}
 
+	//! Negates this vector by subtracting it from zero
+	Vec operator -() const
+	{
+		return vec_sub(Vec(0).d(), m_d);
+	}
+
 	////////////////////////////////////
 
 	VecBool<elemtype> operator<(const Vec & other) const
