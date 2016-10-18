@@ -11,6 +11,11 @@ public:
 	using typeinfo = detail::typetable_bool<elemtype>;
 	using vectype = typename typeinfo::vectype;
 
+	VecBool()
+	{
+		m_d = vec_xor(m_d, m_d);
+	}
+
 	VecBool(vectype d) :
 		m_d(d)
 	{

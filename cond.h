@@ -72,7 +72,6 @@ detail::_ifobj<elemtype> _if(const VecBool<elemtype> & condition)
 
 ////////////////////////////////////////////////////////////////////////////
 
-
 template<typename elemtype>
 struct _switchobj
 {
@@ -88,14 +87,14 @@ struct _switchobj
 	{
 		typename VecBool<elemtype>::vectype eq = vec_cmpeq(m_switchValue.d(), caseValue.d());
 		m_resValue = vec_sel(m_resValue.d(), thenValue.d(), eq);
-		m_filled = vec_or(m_filled, eq);
+		m_filled = vec_or(m_filled.d(), eq);
 		return *this;
 	}
 
 	// default: return defaultValue;
 	Vec<elemtype> operator()(const Vec<elemtype> & defaultValue) const
 	{
-		return vec_sel(defaultValue.d(), m_resValue.d(), m_filled);
+		return vec_sel(defaultValue.d(), m_resValue.d(), m_filled.d());
 	}
 
 	operator Vec<elemtype>() const
@@ -106,7 +105,7 @@ struct _switchobj
 private:
 	Vec<elemtype> m_switchValue;
 	Vec<elemtype> m_resValue;
-	typename VecBool<elemtype>::vectype m_filled;
+	VecBool<elemtype> m_filled;
 };
 
 template<typename elemtype>
