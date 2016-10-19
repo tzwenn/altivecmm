@@ -153,6 +153,11 @@ namespace altivecmm {
 			return m_d;
 		}
 
+		vectype operator *() const
+		{
+			return m_d;
+		}
+
 		////////////////////////////////////
 
 		std::ostream& print(std::ostream & stream) const
