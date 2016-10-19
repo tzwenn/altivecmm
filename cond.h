@@ -85,16 +85,16 @@ struct _switchobj
 	// caseValue: return thenValue;
 	_switchobj & operator()(const Vec<elemtype> & caseValue, const Vec<elemtype> & thenValue)
 	{
-		typename VecBool<elemtype>::vectype eq = vec_cmpeq(m_switchValue.d(), caseValue.d());
-		m_resValue = vec_sel(m_resValue.d(), thenValue.d(), eq);
-		m_filled = vec_or(m_filled.d(), eq);
+		typename VecBool<elemtype>::vectype eq = vec_cmpeq(*m_switchValue, *caseValue);
+		m_resValue = vec_sel(*m_resValue, *thenValue, eq);
+		m_filled = vec_or(*m_filled, eq);
 		return *this;
 	}
 
 	// default: return defaultValue;
 	Vec<elemtype> operator()(const Vec<elemtype> & defaultValue) const
 	{
-		return vec_sel(defaultValue.d(), m_resValue.d(), m_filled.d());
+		return vec_sel(*defaultValue, *m_resValue, *m_filled);
 	}
 
 	operator Vec<elemtype>() const

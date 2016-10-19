@@ -34,6 +34,11 @@ public:
 		return m_d;
 	}
 
+	vectype operator *() const
+	{
+		return m_d;
+	}
+
 	operator vectype() const
 	{
 		return m_d;
