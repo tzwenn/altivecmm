@@ -60,6 +60,13 @@ public:
 
 	////////////////////////////////////
 
+	void store(elemtype *dst)
+	{
+		*(vectype *)dst = m_d;
+	}
+
+	////////////////////////////////////
+
 	Vec & operator +=(const Vec & other)
 	{
 		m_d = vec_add(m_d, other.m_d);
@@ -146,6 +153,14 @@ public:
 	Vec operator -() const
 	{
 		return vec_sub(Vec(0).d(), m_d);
+	}
+
+	////////////////////////////////////
+
+	//! Left-rotates a vector
+	Vec rotl(const Vec & other) const
+	{
+		return vec_rl(m_d, other.m_d);
 	}
 
 	////////////////////////////////////
